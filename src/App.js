@@ -8,6 +8,8 @@ function App() {
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
+    const TOP_TRACKS_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks"
+    const SCOPE = "user-top-read"
 
     const [ token, setToken ] = useState("");
     const [searchKey, setSearchKey] = useState("");
@@ -31,6 +33,21 @@ function App() {
     const logout = () => {
         setToken("");
         window.localStorage.removeItem("token");
+    }
+
+    const getTopTracks = async (e) => {
+        e.preventDefault()
+        const {data} = await axios.get("https://api.spotify.com/v1/me/top/artists", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            params: {
+                limit: 10, 
+                time_range: "short_term"
+            }
+        })
+        console.log(data);
+        setArtists(data.items);
     }
 
     const searchArtists = async (e) => {
