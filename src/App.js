@@ -8,7 +8,6 @@ function App() {
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
-    const TOP_TRACKS_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks"
     const SCOPE = "user-top-read"
 
     const [ token, setToken ] = useState("");
@@ -67,9 +66,12 @@ function App() {
 
     const renderArtists = () => {
         return artists.map(artist => (
-            <div key={artist.id}>
+            <div className='selection' key={artist.id}>
+                <div className="artistname">
                 {artist.name}
-                {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+                </div>
+
+                {artist.images.length ? <img width={"25%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
             </div>
         ))
     }
@@ -77,21 +79,22 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-            <h1> Spotify React</h1>
-                {!token ?
-                <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
-                : <button onClick={logout}> Logout </button>} 
+                <h1>monk<span class='smaller'>media</span>
+                </h1>
+                    {!token ?
+                    <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>Login to Spotify</a>
+                    : <button className='logout' onClick={logout}> Logout </button>} 
 
-                {token ?
-                    <form onSubmit={searchArtists}>
-                        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                        <button type={"submit"}>Search</button>
-                    </form>
+                    {token ?
+                        <form onSubmit={getTopTracks}>
+                            <input type="text" onChange={e => setSearchKey(e.target.value)}/>
+                            <button type={"submit"}>tap in, b*tch</button>
+                        </form>
 
-                    : <h2>Please login</h2>
-                }
+                        : <h2>Please login ^</h2>
+                    }
 
-                {renderArtists()}
+                    {renderArtists()}
 
             </header>
         </div>
