@@ -60,7 +60,7 @@ function App() {
                 type: "artist"
             }
         })
-        console.log(data);
+        //console.log(data);
         setArtists(data.artists.items);
     }
 
@@ -70,8 +70,8 @@ function App() {
                 <div className="artistname">
                 {artist.name}
                 </div>
-
-                {artist.images.length ? <img width={"25%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+                {artist.popularity}                
+                {artist.images.length ? <img width={"30%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
             </div>
         ))
     }
