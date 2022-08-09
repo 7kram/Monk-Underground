@@ -8,12 +8,15 @@ function App() {
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
-    const TOP_TRACKS_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks"
     const SCOPE = "user-top-read"
 
     const [ token, setToken ] = useState("");
     const [searchKey, setSearchKey] = useState("");
     const [artists, setArtists] = useState([]);
+
+    let lowScore = 101;
+    let lowName = "";
+    let lowID = ""; //for get artist endpoint
 
     useEffect( () => {
         const hash = window.location.hash;
@@ -66,11 +69,27 @@ function App() {
     }
 
     const renderArtists = () => {
+        
+        artists.map(getLowScore); //does this for each item
+        function getLowScore(item) {
+            if (item.popularity < lowScore) {
+                lowScore = item.popularity;
+                lowName = item.name;
+                lowID = item.id;
+            }
+        }
+
+        console.log(lowName);
+        console.log(100 - lowScore); //undrgrnd score
+        console.log(lowID);
+
         return artists.map(artist => (
-            <div key={artist.id}>
+            <div className='selection' key={artist.id}>
+                <div className="artistname">
                 {artist.name}
+                </div>
                 {artist.popularity}                
-                {artist.images.length ? <img width={"60%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+                {artist.images.length ? <img width={"30%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
             </div>
         ))
     }
@@ -78,19 +97,22 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-            <h1> Spotify React</h1>
-                {!token ?
-                <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>Login to Spotify</a>
-                : <button onClick={logout}> Logout </button>} 
+                <h1>monk<span className='smaller'>media</span>
+                </h1>
+                    {!token ?
+                    <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>Login to Spotify</a>
+                    : <button className='logout' onClick={logout}> Logout </button>} 
 
-                {token ?
-                    <form onSubmit={getTopTracks}>
-                        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                        <button type={"submit"}>tap in, b*tch</button>
-                    </form>
-                    : <h2>Please login</h2>
-                }
-                {renderArtists()}
+                    {token ?
+                        <form onSubmit={getTopTracks}>
+                            <input type="text" onChange={e => setSearchKey(e.target.value)}/>
+                            <button type={"submit"}>TAP IN</button>
+                        </form>
+
+                        : <h2>Please login ^</h2>
+                    }
+
+                    {renderArtists()}
 
             </header>
         </div>
