@@ -13,6 +13,7 @@ function App() {
     const [ token, setToken ] = useState("");
     const [searchKey, setSearchKey] = useState("");
     const [artists, setArtists] = useState([]);
+    const [obscure, setObscure] = useState([]);
 
     let lowScore = 101;
     let lowName = "";
@@ -68,6 +69,25 @@ function App() {
         setArtists(data.artists.items);
     }
 
+    const getObscureArtist = async (e) => {
+        e.preventDefault();
+        const {data} = await axios.get(`https://api.spotify.com/v1/artists/${lowID}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        //console.log(data);
+        setObscure(data);
+        //console.log("obscure");
+        console.log(obscure);
+    }
+
+    const renderObscure = () => {
+        //if (lowID) {
+
+        //}
+    }
+
     const renderArtists = () => {
         
         artists.map(getLowScore); //does this for each item
@@ -88,11 +108,13 @@ function App() {
                 <div className="artistname">
                 {artist.name}
                 </div>
-                {artist.popularity}                
+                {100 - artist.popularity}                
                 {artist.images.length ? <img width={"30%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
             </div>
         ))
     }
+
+
 
     return (
         <div className="App">
@@ -104,15 +126,30 @@ function App() {
                     : <button className='logout' onClick={logout}> Logout </button>} 
 
                     {token ?
+                        //getTopTracks
+                    
                         <form onSubmit={getTopTracks}>
                             <input type="text" onChange={e => setSearchKey(e.target.value)}/>
                             <button type={"submit"}>TAP IN</button>
                         </form>
+                    
 
                         : <h2>Please login ^</h2>
                     }
 
                     {renderArtists()}
+
+                    {token ?
+                        <form onSubmit={getObscureArtist}>
+                        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
+                        <button type={"submit"}>GO UNDERGROUND</button>
+                        </form>
+                
+
+                        : <h2>Please login ^</h2>
+                    }
+                    
+                    {renderObscure()}
 
             </header>
         </div>
