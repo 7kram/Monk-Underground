@@ -11,13 +11,13 @@ function App() {
     const SCOPE = "user-top-read"
 
     const [ token, setToken ] = useState("");
-    const [searchKey, setSearchKey] = useState("");
     const [artists, setArtists] = useState([]);
     const [obscure, setObscure] = useState([]);
 
-    let lowScore = 101;
-    let lowName = "";
+    let lowScore = 101; //for debugging
+    let lowName = ""; //for debugging
     let lowID = ""; //for get artist endpoint
+    let ignore = false; //don't call useeffect functions when it's true
 
     useEffect( () => {
         const hash = window.location.hash;
@@ -31,6 +31,7 @@ function App() {
         }
 
         setToken(token);
+        //console.log(token);
 
     }, []);
 
@@ -39,69 +40,54 @@ function App() {
         window.localStorage.removeItem("token");
     }
 
-    const getTopTracks = async (e) => {
-        e.preventDefault()
-        const {data} = await axios.get("https://api.spotify.com/v1/me/top/artists", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-            params: {
-                limit: 10, 
-                time_range: "short_term"
-            }
-        })
-        console.log(data);
-        setArtists(data.items);
-    }
+    useEffect(() => {
+        if (token){
+            const getTopArtists = async () => {
+                try {
+                const {data} = await axios.get("https://api.spotify.com/v1/me/top/artists", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                    params: {
+                        limit: 10, 
+                        time_range: "short_term"
+                    }
+                })
+                //console.log(data);
+                setArtists(data.items);
+                //GET TOP OBSCURE ARTIST HERE
+                }
+                catch {
+                    logout(); //logs you out if token expired
+                }
+            };
+            getTopArtists();
 
-    const searchArtists = async (e) => {
-        e.preventDefault()
-        const {data} = await axios.get("https://api.spotify.com/v1/search", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-            params: {
-                q: searchKey,
-                type: "artist"
-            }
-        })
-        //console.log(data);
-        setArtists(data.artists.items);
-    }
+            //ignore = true; //JUST FOR NOW, REMOVE WHEN GETOBSCURE ARTIST IS DONE
+        }
+    }, [ignore, token]);
 
-    const getObscureArtist = async (e) => {
-        e.preventDefault();
-        const {data} = await axios.get(`https://api.spotify.com/v1/artists/${lowID}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-        //console.log(data);
-        setObscure(data);
-        //console.log("obscure");
-        console.log(obscure);
-    }
+    useEffect(() => {
+        if (lowID){
+            const getObscureArtist = async () => {
+                const {data} = await axios.get(`https://api.spotify.com/v1/artists/${lowID}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                setObscure(data);
+                console.log(obscure);
+            };
+            getObscureArtist();
+            //ignore = true;
+        }
+    }, [lowID]);
 
-    const renderObscure = () => {
-        //if (lowID) {
+    /*const getLowID = () => {
 
-        //}
-    }
+    }*/
 
     const renderArtists = () => {
-        
-        artists.map(getLowScore); //does this for each item
-        function getLowScore(item) {
-            if (item.popularity < lowScore) {
-                lowScore = item.popularity;
-                lowName = item.name;
-                lowID = item.id;
-            }
-        }
-
-        console.log(lowName);
-        console.log(100 - lowScore); //undrgrnd score
-        console.log(lowID);
 
         return artists.map(artist => (
             <div className='selection' key={artist.id}>
@@ -125,31 +111,8 @@ function App() {
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>Login to Spotify</a>
                     : <button className='logout' onClick={logout}> Logout </button>} 
 
-                    {token ?
-                        //getTopTracks
-                    
-                        <form onSubmit={getTopTracks}>
-                            <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                            <button type={"submit"}>TAP IN</button>
-                        </form>
-                    
-
-                        : <h2>Please login ^</h2>
-                    }
-
+                    {/*RENDER OBSCURE ARTIST */}
                     {renderArtists()}
-
-                    {token ?
-                        <form onSubmit={getObscureArtist}>
-                        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                        <button type={"submit"}>GO UNDERGROUND</button>
-                        </form>
-                
-
-                        : <h2>Please login ^</h2>
-                    }
-                    
-                    {renderObscure()}
 
             </header>
         </div>
