@@ -13,11 +13,17 @@ function App() {
     const [ token, setToken ] = useState("");
     const [artists, setArtists] = useState([]);
     const [obscure, setObscure] = useState([]);
+    const [lowID, setLowID] = useState("");
+    const [artistsFound, setArtistsFound] = useState(false);
+    const [idFound, setIDFound] = useState(false);
+    const [obscureFound, setObscureFound] = useState(false);
 
     let lowScore = 101; //for debugging
-    let lowName = ""; //for debugging
-    let lowID = ""; //for get artist endpoint
+    //let lowName = ""; //for debugging
+    //let lowID = ""; //for get artist endpoint
     let ignore = false; //don't call useeffect functions when it's true
+    //let artistsFound = false;
+    //let idFound = false;
 
     useEffect( () => {
         const hash = window.location.hash;
@@ -44,51 +50,85 @@ function App() {
         if (token){
             const getTopArtists = async () => {
                 try {
-                const {data} = await axios.get("https://api.spotify.com/v1/me/top/artists", {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    },
-                    params: {
-                        limit: 10, 
-                        time_range: "short_term"
-                    }
-                })
-                //console.log(data);
-                setArtists(data.items);
-                //GET TOP OBSCURE ARTIST HERE
+                    const {data} = await axios.get("https://api.spotify.com/v1/me/top/artists", {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        },
+                        params: {
+                            limit: 10, 
+                            time_range: "short_term"
+                        }
+                    })
+                    //console.log(data);
+                    setArtists(data.items);
+                    setArtistsFound(true);
                 }
                 catch {
                     logout(); //logs you out if token expired
                 }
             };
             getTopArtists();
-
             //ignore = true; //JUST FOR NOW, REMOVE WHEN GETOBSCURE ARTIST IS DONE
         }
-    }, [ignore, token]);
+    }, [token]);
 
     useEffect(() => {
-        if (lowID){
+        if (artistsFound) {
+            const getLowID = () => {
+                //console.log("GET LOW ID called");
+                //console.log(artists);
+                artists.map(getLowScore); //does this for each item
+                function getLowScore(item) {
+                    if (item.popularity < lowScore) {
+                                lowScore = item.popularity;
+                                //console.log(lowScore);
+                                //lowName = item.name;
+                                setLowID(item.id);
+                            }
+                        }
+                //console.log(lowName);
+                //console.log(100 - lowScore); //undrgrnd score
+                setIDFound(true);
+            };
+            getLowID();
+        }
+    }, [artistsFound]);
+
+    useEffect(() => {
+        if (idFound){
             const getObscureArtist = async () => {
                 const {data} = await axios.get(`https://api.spotify.com/v1/artists/${lowID}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-                setObscure(data);
-                console.log(obscure);
-            };
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
+                    setObscure(data);
+                    //console.log(obscure);
+                };
             getObscureArtist();
+            setObscureFound(true);
             //ignore = true;
         }
-    }, [lowID]);
+    }, [idFound]);
 
-    /*const getLowID = () => {
+    useEffect(() => { //TESTING
+        console.log(obscure);
 
-    }*/
+    }, [obscureFound]);
 
+    const renderObscure = () => {
+        return (
+            <div className='selection' key={obscure.id}>
+                <div className="artistname">
+                {obscure.name}
+                </div>
+                {100 - obscure.popularity}                
+                {obscure.images.length ? <img width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
+            </div>
+        )
+    }
+        
     const renderArtists = () => {
-
         return artists.map(artist => (
             <div className='selection' key={artist.id}>
                 <div className="artistname">
@@ -111,8 +151,14 @@ function App() {
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>Login to Spotify</a>
                     : <button className='logout' onClick={logout}> Logout </button>} 
 
-                    {/*RENDER OBSCURE ARTIST */}
+                    <div> 
+                        <h2> TOP UNDRGRND ARTIST: </h2>
+                        {renderObscure()} 
+                    </div>
+                    <div> 
+                    <h2> ALL TOP ARTISTS: </h2>
                     {renderArtists()}
+                    </div>
 
             </header>
         </div>
