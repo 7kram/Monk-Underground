@@ -18,7 +18,6 @@ function App() {
     const [idFound, setIDFound] = useState(false);
     const [obscureFound, setObscureFound] = useState(false);
 
-    let lowScore = 101; //for debugging
     //let lowName = ""; //for debugging
     //let lowID = ""; //for get artist endpoint
     let ignore = false; //don't call useeffect functions when it's true
@@ -74,6 +73,7 @@ function App() {
 
     useEffect(() => {
         if (artistsFound) {
+            let lowScore = 101;
             const getLowID = () => {
                 //console.log("GET LOW ID called");
                 //console.log(artists);
@@ -92,7 +92,7 @@ function App() {
             };
             getLowID();
         }
-    }, [artistsFound]);
+    }, [artistsFound, artists]);
 
     useEffect(() => {
         if (idFound){
@@ -103,20 +103,21 @@ function App() {
                         }
                     })
                     setObscure(data);
+                    setObscureFound(true);
                     //console.log(obscure);
                 };
             getObscureArtist();
-            setObscureFound(true);
             //ignore = true;
         }
-    }, [idFound]);
+    }, [idFound, lowID, token]);
 
     useEffect(() => { //TESTING
         console.log(obscure);
 
-    }, [obscureFound]);
+    }, [obscureFound, obscure]);
 
     const renderObscure = () => {
+        if (obscure.length != 0){
         return (
             <div className='selection' key={obscure.id}>
                 <div className="artistname">
@@ -126,6 +127,7 @@ function App() {
                 {obscure.images.length ? <img width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
             </div>
         )
+        }
     }
         
     const renderArtists = () => {
@@ -141,7 +143,6 @@ function App() {
     }
 
 
-
     return (
         <div className="App">
             <header className="App-header">
@@ -151,14 +152,13 @@ function App() {
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>Login to Spotify</a>
                     : <button className='logout' onClick={logout}> Logout </button>} 
 
-                    <div> 
-                        <h2> TOP UNDRGRND ARTIST: </h2>
+                    
+
                         {renderObscure()} 
-                    </div>
-                    <div> 
-                    <h2> ALL TOP ARTISTS: </h2>
-                    {renderArtists()}
-                    </div>
+
+                        
+                        {renderArtists()}
+
 
             </header>
         </div>
