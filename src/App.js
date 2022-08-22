@@ -119,12 +119,16 @@ function App() {
     const renderObscure = () => {
         if (obscure.length != 0){
         return (
+            <div>
+                <h2>Your Top Underground Artist</h2>
             <div className='selection' key={obscure.id}>
                 <div className="artistname">
                 {obscure.name}
                 </div>
                 {100 - obscure.popularity}                
                 {obscure.images.length ? <img width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
+            </div>
+                <h2>Your Top Artists</h2>
             </div>
         )
         }
