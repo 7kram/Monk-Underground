@@ -54,7 +54,7 @@ function App() {
                             Authorization: `Bearer ${token}`
                         },
                         params: {
-                            limit: 10, 
+                            limit: 30, 
                             time_range: "short_term"
                         }
                     })
