@@ -134,13 +134,13 @@ function App() {
         }
     }
         
-    const renderArtists = () => {
+   const renderArtists = () => {
         return artists.map(artist => (
             <div className='selection' key={artist.id}>
                 <div className="artistname">
                 {artist.name}
                 </div>
-                {100 - artist.popularity}                
+                {100 - artist.popularity}             
                 {artist.images.length ? <img width={"30%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
             </div>
         ))
@@ -150,7 +150,7 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>monk<span className='smaller'>media</span>
+                <h1>monk<span className='smaller'>:underground</span>
                 </h1>
                     {!token ?
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>Login to Spotify</a>
@@ -169,4 +169,4 @@ function App() {
     );
 }
 
-export default App;
+export default App; 
