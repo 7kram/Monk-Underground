@@ -55,16 +55,15 @@ a:hover {
 }
 
 img {
-    margin: 1em auto;
+    margin: 0 auto;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    position: absolute;
+    position: relative;
     transition: transform .2s; /* Animation */
     display: grid;
     width:400px; 
     height: auto;
-    left: 760px;
 
 }
 
@@ -140,9 +139,8 @@ width: auto;
     font-family: futura;
     font-weight: bold;
     font-size: large;
-    position: absolute;
-    top: 188px;
-    left: 897px;
+    position: relative;
+    bottom: 505px;
 }
 
 .score {
@@ -150,15 +148,15 @@ width: auto;
     font-family: futura;
     font-weight: bolder;
     font-size: 24pt;
-    position: absolute;
-    top: 308px;
-    left: 790px; 
+    position: relative;
+    right: 130px; 
+    bottom: 410px;
 }
 
 .artistcover {
-    position: absolute;
-    top: 101px;
-    left: 439px; 
+    position: relative;
+    bottom: 271px;
+    left: 219px;
     /*max-width: 100%;
     min-width: 100%;*/
     width: 165px;
