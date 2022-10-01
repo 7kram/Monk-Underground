@@ -1,17 +1,22 @@
+body {
+    background-color: #1C1B1F;
+}
+
 .App {
     text-align: center;
     justify-content: center;
     background-color: #1C1B1F;
-    margin: 0%;
+    margin: 0% auto;
     padding: 0%;
 }
 
 h1 {
     justify-content: left;
     text-align: left;
+    padding-left: 30px;
     font-family: 'courier new';
     color: white;
-    margin: 0%;
+    margin: 0 auto;
     padding-top: 20px;
     font-size: 45px;
 }
@@ -19,6 +24,7 @@ h1 {
 h2 {
     color: white;
     font-family: "futura";
+    margin: 0 auto;
 }
 
 a {
@@ -53,26 +59,19 @@ img {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    border-radius: 1em;
-    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
-    --tw-shadow: 0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);
-    position: relative;
+    position: absolute;
     transition: transform .2s; /* Animation */
     display: grid;
+    width:400px; 
+    height: auto;
+    left: 760px;
+
 }
 
 
-img:hover {
+/*img:hover {
     transform: scale(1.05);
-}
-
-.artistname {
-    color: white;
-    padding-top: 50px;
-    font-family: futura;
-    font-weight: bold;
-    font-size: x-large;
-}
+}*/
 
 .popularity {
     color: white;
@@ -96,18 +95,12 @@ button {
     transition-duration: 0.1s;
     margin: 10px;
 
-
 }
 
 button:hover {
     background-color: white; /* Grey */
     color: #1C1B1F;
     cursor: pointer;
-}
-
-.logout {
-    float: right;
-
 }
 
 
@@ -131,4 +124,44 @@ width: 100%;
     color: white;
     font-weight: bolder;
     font-size: larger
+}
+
+.shareable {
+height: 50px;
+width: auto;
+}
+
+.headtext {
+    position: relative;
+}
+
+.artistname {
+    color: white;
+    font-family: futura;
+    font-weight: bold;
+    font-size: large;
+    position: absolute;
+    top: 188px;
+    left: 897px;
+}
+
+.score {
+    color: black;
+    font-family: futura;
+    font-weight: bolder;
+    font-size: 24pt;
+    position: absolute;
+    top: 308px;
+    left: 790px; 
+}
+
+.artistcover {
+    position: absolute;
+    top: 101px;
+    left: 439px; 
+    /*max-width: 100%;
+    min-width: 100%;*/
+    width: 165px;
+    height: 165px;
+    object-fit:cover;
 }

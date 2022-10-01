@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
+import image from './tapped_in_fasho.jpg';
 
 function App() {
 
@@ -116,35 +117,49 @@ function App() {
 
     }, [obscureFound, obscure]);
 
+
     const renderObscure = () => {
         if (obscure.length != 0){
         return (
-            <div>
-                <h2>Your Top Underground Artist</h2>
-            <div className='selection' key={obscure.id}>
-                <div className="artistname">
-                {obscure.name}
+
+            <div className='headtext'>
+                <div className='headimage'>
+                    <img src={image} alt="My Top Underground Artist" /> <img/>
                 </div>
-                {100 - obscure.popularity}                
-                {obscure.images.length ? <img width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
-            </div>
-                <h2>Your Top Artists</h2>
+                <div className='selection' key={obscure.id}>
+                    <div className="artistname">
+                        {obscure.name}
+                    </div>
+                    <div className='score'>
+                    {100 - obscure.popularity + "%"}  
+                    </div>  
+
+                    <div class = 'image-container'>
+
+                        <div className='artistcover'>          
+                        {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
+                        </div> 
+
+                    </div>
+                </div>
+                {/* <h2>Your Top Artists</h2> */}
             </div>
         )
         }
     }
         
-   const renderArtists = () => {
-        return artists.map(artist => (
-            <div className='selection' key={artist.id}>
-                <div className="artistname">
-                {artist.name}
-                </div>
-                {100 - artist.popularity}             
-                {artist.images.length ? <img width={"30%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
-            </div>
-        ))
-    }
+
+//    const renderArtists = () => {
+//         return artists.map(artist => (
+//             <div className='selection' key={artist.id}>
+//                 <div className="artistname">
+//                 {artist.name}
+//                 </div>
+//                 {100 - artist.popularity}             
+//                 {artist.images.length ? <img width={"30%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+//             </div>
+//         ))
+//     }
 
 
     return (
@@ -154,14 +169,14 @@ function App() {
                 </h1>
                     {!token ?
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>Login to Spotify</a>
-                    : <button className='logout' onClick={logout}> Logout </button>} 
-
+                    :
+                      <button className='logout' onClick={logout}> Logout </button>} 
                     
 
                         {renderObscure()} 
 
-                        
-                        {renderArtists()}
+
+                        {/* {renderArtists()} */}
 
 
             </header>
