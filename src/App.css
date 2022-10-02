@@ -155,10 +155,13 @@ width: auto;
 
 .artistcover {
     position: relative;
-    bottom: 271px;
+    bottom: 270px;
     left: 0px;
-    width: 165px;
-    height: 165px;
+    min-width: 165px;
+    min-height: 165px;
+    max-width: 165px;
+    max-height: 165px;
     object-fit: cover;
     margin: 0 auto;
+   
 }
