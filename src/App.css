@@ -14,7 +14,7 @@ h1 {
     justify-content: left;
     text-align: left;
     padding-left: 30px;
-    font-family: 'futura';
+    font-family: 'SilversPersonal';
     color: white;
     margin: 0 auto;
     padding-top: 20px;
@@ -155,7 +155,7 @@ width: auto;
 
 .artistcover {
     position: relative;
-    bottom: 270px;
+    bottom: 271px;
     left: 0px;
     min-width: 165px;
     min-height: 165px;
