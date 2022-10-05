@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 import image from './tapped_in_fasho.jpg';
+import image2 from './not_tapped_in.jpg';
+import image3 from './bro.jpg';
 import exportAsImage from "./exportAsImage";
 
 
@@ -60,7 +62,7 @@ function App() {
                         },
                         params: {
                             limit: 50, 
-                            time_range: "long_term"
+                            time_range: "medium_term"
                         }
                     })
                     //console.log(data);
@@ -124,22 +126,32 @@ function App() {
 
     const renderObscure = () => {
         if (obscure.length != 0){
+            let imagePath = './bro.jpg';
+            if (obscure.popularity <= 50){
+                imagePath = './tapped_in_fasho.jpg';
+            }
+            else if (obscure.popularity <= 75){
+                imagePath = './not_tapped_in.jpg';
+                
+            }
+
         return (
                 
                     <div ref={exportRef} id="myartist" className='headtext'>
                         <div className='headimage' key={obscure.id}>
-                            <img src={image} alt="My Top Underground Artist" /> <img/>
+                            <img src={require(`${imagePath}`)} alt="My Top Underground Artist" /> <img/>
                                     <div className="artistname">
                                         {obscure.name}
                                     </div>
+                                <div className = "scorebox">  
                                     <div className='score'>
                                      {100 - obscure.popularity + "%"}  
                                     </div>  
+                                </div>      
                                         <div className='artistcover'>          
                                         {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
                                         </div> 
                         </div>
-                        <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SHARE</button>
                     </div>
             )
         }
@@ -167,9 +179,12 @@ function App() {
                         monk<span className='smaller'>:underground</span>
                     </h1>
                         {!token ?
-                        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>Login to Spotify</a>
+                        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>LOGIN TO SPOTIFY</a>
                         :
-                        <button className='logout' onClick={logout}> Logout </button>} 
+                        <div>
+                            <button className='logout' onClick={logout}> LOGOUT </button>
+                            <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SAVE</button>
+                        </div>}
             </header>    
             <body>        
 
