@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 import image from './tapped_in_fasho.jpg';
+import exportAsImage from "./exportAsImage";
+
+
 
 function App() {
 
+    const exportRef = useRef();
     const CLIENT_ID = "d0db6dd1a5ef4b7f8a493a84259ae21c"
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
@@ -55,8 +59,8 @@ function App() {
                             Authorization: `Bearer ${token}`
                         },
                         params: {
-                            limit: 30, 
-                            time_range: "short_term"
+                            limit: 50, 
+                            time_range: "long_term"
                         }
                     })
                     //console.log(data);
@@ -121,33 +125,26 @@ function App() {
     const renderObscure = () => {
         if (obscure.length != 0){
         return (
-
-            <div className='headtext'>
-                <div className='headimage'>
-                    <img src={image} alt="My Top Underground Artist" /> <img/>
-                </div>
-                <div className='selection' key={obscure.id}>
-                    <div className="artistname">
-                        {obscure.name}
+                
+                    <div ref={exportRef} id="myartist" className='headtext'>
+                        <div className='headimage' key={obscure.id}>
+                            <img src={image} alt="My Top Underground Artist" /> <img/>
+                                    <div className="artistname">
+                                        {obscure.name}
+                                    </div>
+                                    <div className='score'>
+                                     {100 - obscure.popularity + "%"}  
+                                    </div>  
+                                        <div className='artistcover'>          
+                                        {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
+                                        </div> 
+                        </div>
+                        <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SHARE</button>
                     </div>
-                    <div className='score'>
-                    {100 - obscure.popularity + "%"}  
-                    </div>  
-
-                    <div class = 'image-container'>
-
-                        <div className='artistcover'>          
-                        {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
-                        </div> 
-
-                    </div>
-                </div>
-                {/* <h2>Your Top Artists</h2> */}
-            </div>
-        )
+            )
         }
+          
     }
-        
 
 //    const renderArtists = () => {
 //         return artists.map(artist => (
@@ -164,24 +161,25 @@ function App() {
 
     return (
         <div className="App">
+            
             <header className="App-header">
-                <h1>monk<span className='smaller'>:underground</span>
-                </h1>
-                    {!token ?
-                    <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>Login to Spotify</a>
-                    :
-                      <button className='logout' onClick={logout}> Logout </button>} 
-                    
+                    <h1>
+                        monk<span className='smaller'>:underground</span>
+                    </h1>
+                        {!token ?
+                        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>Login to Spotify</a>
+                        :
+                        <button className='logout' onClick={logout}> Logout </button>} 
+            </header>    
+            <body>        
 
-                        {renderObscure()} 
+                            {renderObscure()} 
 
+                            {/* {renderArtists()} */}
+            </body>    
 
-                        {/* {renderArtists()} */}
-
-
-            </header>
         </div>
     );
 }
 
-export default App; 
+export default App;  
