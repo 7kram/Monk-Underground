@@ -154,6 +154,7 @@ img {
     position: relative;
     bottom: 512px;
     display: inline-block;
+
 }
 
 .score {
@@ -170,7 +171,8 @@ img {
     line-height: 128px;  
     left: 10px;
     margin: 0;
-    padding: 0
+    padding: 0;
+
     
 }
 
@@ -202,6 +204,8 @@ img {
     height: 679.5px;
     width: 400px;
     display: inline-block;
+    line-height: 1.4;
+    white-space: nowrap;
 }
 
 .App-header {
@@ -220,5 +224,6 @@ img {
     bottom: 448px;
     left: 20px;
     margin: 0;
-    padding: 0
+    padding: 0;
+
 }
