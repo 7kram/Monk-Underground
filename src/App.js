@@ -136,7 +136,7 @@ function App() {
             }
 
         return (
-                
+
                     <div ref={exportRef} id="myartist" className='headtext'>
                         <div className='headimage' key={obscure.id}>
                             <img src={require(`${imagePath}`)} alt="My Top Underground Artist" /> <img/>

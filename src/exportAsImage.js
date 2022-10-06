@@ -5,10 +5,8 @@ const exportAsImage = async (element, imageFileName) => {
   const body = document.getElementsByTagName("body")[0];
   let htmlWidth = html.clientWidth;
   let bodyWidth = body.clientWidth;
-  
 
   const newWidth = element.scrollWidth - element.clientWidth;
-
   if (newWidth > element.clientWidth) {
     htmlWidth += newWidth;
     bodyWidth += newWidth;
@@ -46,5 +44,7 @@ const downloadImage = (blob, fileName) => {
 
   fakeLink.remove();
 };
+
+
 
 export default exportAsImage;
