@@ -12,7 +12,7 @@ function App() {
 
     const exportRef = useRef();
     const CLIENT_ID = "d0db6dd1a5ef4b7f8a493a84259ae21c"
-    const REDIRECT_URI = "https://monkunderground.com"
+    const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
     const SCOPE = "user-top-read"
@@ -24,6 +24,9 @@ function App() {
     const [artistsFound, setArtistsFound] = useState(false);
     const [idFound, setIDFound] = useState(false);
     const [obscureFound, setObscureFound] = useState(false);
+    const url = 'https://accounts.spotify.com/en/logout'                                                                                                                                                                                                                                                                               
+    const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40')                                                                                                
+    setTimeout(() => spotifyLogoutWindow.close(), 1000)
 
     //let lowName = ""; //for debugging
     //let lowID = ""; //for get artist endpoint
@@ -61,7 +64,7 @@ function App() {
                             Authorization: `Bearer ${token}`
                         },
                         params: {
-                            limit: 50, 
+                            limit: 25, 
                             time_range: "medium_term"
                         }
                     })
@@ -137,8 +140,8 @@ function App() {
 
         return (
 
-                    <div ref={exportRef} id="myartist" className='headtext'>
-                        <div className='headimage' key={obscure.id}>
+                    <div id="myartist" className='headtext'>
+                        <div ref={exportRef} className='headimage' key={obscure.id}>
                             <img src={require(`${imagePath}`)} alt="My Top Underground Artist" /> <img/>
                                     <div className="artistname">
                                         {obscure.name}
@@ -148,28 +151,18 @@ function App() {
                                      {100 - obscure.popularity + "%"}  
                                     </div>  
                                 </div>      
-                                        <div className='artistcover'>          
-                                        {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
-                                        </div> 
+                                                 
+                                {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
+                                        
                         </div>
+                        <div className = "smalltext">
+                            <p>Music data, artist images, and album covers are provided by Spotify.</p><p> monk:underground is not affiliated, associated, authorized, endorsed by,or in any way officially connected with Spotify. Spotify is a trademark of Spotify AB.</p>  
+                        </div>   
                     </div>
             )
         }
           
     }
-
-//    const renderArtists = () => {
-//         return artists.map(artist => (
-//             <div className='selection' key={artist.id}>
-//                 <div className="artistname">
-//                 {artist.name}
-//                 </div>
-//                 {100 - artist.popularity}             
-//                 {artist.images.length ? <img width={"30%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
-//             </div>
-//         ))
-//     }
-
 
     return (
         <div className="App">
@@ -183,14 +176,13 @@ function App() {
                         :
                         <div>
                             <button className='logout' onClick={logout}> LOGOUT </button>
-                            <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SAVE</button>
-                        </div>}
-            </header>    
-            <body>        
+                            {/* <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SAVE</button> */}
+                        </div>
+                        }
+            </header>  
 
-                            {renderObscure()} 
-
-                            {/* {renderArtists()} */}
+            <body>       
+                            {renderObscure()}           
             </body>    
 
         </div>
