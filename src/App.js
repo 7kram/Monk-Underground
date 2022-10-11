@@ -24,9 +24,6 @@ function App() {
     const [artistsFound, setArtistsFound] = useState(false);
     const [idFound, setIDFound] = useState(false);
     const [obscureFound, setObscureFound] = useState(false);
-    const url = 'https://accounts.spotify.com/en/logout'                                                                                                                                                                                                                                                                               
-    const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40')                                                                                                
-    setTimeout(() => spotifyLogoutWindow.close(), 1000)
 
     //let lowName = ""; //for debugging
     //let lowID = ""; //for get artist endpoint
