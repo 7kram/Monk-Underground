@@ -179,7 +179,12 @@ function App() {
             </header>  
 
             <body>       
-                            {renderObscure()}           
+                            {token ?
+                            renderObscure()
+                            :
+                            <div> 
+                                <h2> how we calculate your underground score </h2>
+                            </div>}           
             </body>    
 
         </div>
