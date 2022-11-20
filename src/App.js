@@ -12,7 +12,7 @@ function App() {
 
     const exportRef = useRef();
     const CLIENT_ID = "d0db6dd1a5ef4b7f8a493a84259ae21c"
-    const REDIRECT_URI = "https://monkunderground.com"
+    const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
     const SCOPE = "user-top-read"
@@ -86,7 +86,7 @@ function App() {
                 //console.log(artists);
                 artists.map(getLowScore); //does this for each item
                 function getLowScore(item) {
-                    if (item.popularity < lowScore) {
+                    if (item.popularity < lowScore) { //add 2nd and 3rd: && item.id != lowestScoreID
                                 lowScore = item.popularity;
                                 //console.log(lowScore);
                                 //lowName = item.name;
