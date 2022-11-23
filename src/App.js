@@ -183,7 +183,7 @@ function App() {
                             renderObscure()
                             :
                             <div> 
-                                <h2> how we calculate your underground score </h2>
+                                <h2> who is your top underground artist? </h2>
                             </div>}           
             </body>    
 
