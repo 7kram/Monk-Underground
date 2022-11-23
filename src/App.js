@@ -5,6 +5,7 @@ import image from './tapped_in_fasho.jpg';
 import image2 from './not_tapped_in.jpg';
 import image3 from './bro.jpg';
 import exportAsImage from "./exportAsImage";
+import gradient from './gradient.jpg'
 
 
 
@@ -15,6 +16,7 @@ function App() {
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
+    const show_dialog = "true"
     const SCOPE = "user-top-read"
 
     const [ token, setToken ] = useState("");
@@ -24,6 +26,7 @@ function App() {
     const [artistsFound, setArtistsFound] = useState(false);
     const [idFound, setIDFound] = useState(false);
     const [obscureFound, setObscureFound] = useState(false);
+                                                                                     
 
     //let lowName = ""; //for debugging
     //let lowID = ""; //for get artist endpoint
@@ -126,12 +129,12 @@ function App() {
 
     const renderObscure = () => {
         if (obscure.length != 0){
-            let imagePath = './bro.jpg';
+            let imagePath = './bro2.png';
             if (obscure.popularity <= 50){
-                imagePath = './tapped_in_fasho.jpg';
+                imagePath = './tapped_in_fasho2.png';
             }
             else if (obscure.popularity <= 75){
-                imagePath = './not_tapped_in.jpg';
+                imagePath = './not_tapped_in2.png';
                 
             }
 
@@ -154,7 +157,7 @@ function App() {
                         </div>
                         <div className = "smalltext">
                             <p>Music data, artist images, and album covers are provided by Spotify.</p><p> monk:underground is not affiliated, associated, authorized, endorsed by,or in any way officially connected with Spotify. Spotify is a trademark of Spotify AB.</p>  
-                        </div>   
+                        </div>
                     </div>
             )
         }
@@ -168,12 +171,14 @@ function App() {
                     <h1>
                         monk<span className='smaller'>:underground</span>
                     </h1>
+
                         {!token ?
-                        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}>LOGIN TO SPOTIFY</a>
+                        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&show_dialog=${show_dialog}`}>LOGIN TO SPOTIFY</a>
                         :
                         <div>
                             <button className='logout' onClick={logout}> LOGOUT </button>
                             {/* <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SAVE</button> */}
+                            <p className='home-small'>Thelonious Monk has given you an underground score of {100 - obscure.popularity + "%"}</p>
                         </div>
                         }
             </header>  
@@ -182,9 +187,12 @@ function App() {
                             {token ?
                             renderObscure()
                             :
-                            <div> 
-                                <h2> how we calculate your underground score </h2>
-                            </div>}           
+                            <div className='homepage'> 
+                                <h3> WANNA KNOW YOUR TOP UNDERGROUND ARTIST?  </h3>
+                              <p className='home-small'> We define "underground" as artists who are up and coming or outside of the mainstream. This is found by taking your top 25 artists in the last 6 months and ranking them based on popularity. The least popular is your top underground artist.</p><p className='home-small'> This website is made possible with the use of the Spotify Web API.</p>
+                              <img className='gradient' src = {gradient}/>
+                            </div>
+                            }           
             </body>    
 
         </div>
