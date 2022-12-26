@@ -60,6 +60,15 @@ h2 {
 
 }
 
+.home-small {
+    font-family: "futura";
+    color: #403233;
+    font-size: small;
+    text-align: center; 
+    vertical-align: middle;
+    white-space: pre-line;
+}
+
 h3 {
     text-align: center;
     font-family: 'futura';
@@ -69,6 +78,7 @@ h3 {
     padding: 0;
     font-size: 25px;
     position: relative;
+
     
 }
 
@@ -96,15 +106,6 @@ p {
     color: grey;
     font-size: small;
     text-align: left; 
-    vertical-align: middle;
-    white-space: pre-line;
-}
-
-.home-small {
-    font-family: "futura";
-    color: #403233;
-    font-size: small;
-    text-align: center; 
     vertical-align: middle;
     white-space: pre-line;
 }
