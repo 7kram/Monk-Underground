@@ -144,7 +144,7 @@ function App() {
                         <div ref={exportRef} className='headimage' key={obscure.id}>
                             <img src={require(`${imagePath}`)} alt="My Top Underground Artist" /> <img/>
                                     <div className="artistname">
-                                        {obscure.name}
+                                    <a href={obscure.external_urls.spotify} className="artistnamelink"> {obscure.name}</a>
                                     </div>
                                 <div className = "scorebox">  
                                     <div className='score'>

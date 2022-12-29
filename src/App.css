@@ -132,6 +132,38 @@ a:hover {
     cursor: pointer;
 }
 
+.artistnamelink {
+    border: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    font-size: large;
+    font-family: 'futura';
+    font-weight: bold;
+    transition-duration: 0.1s;
+    position: relative;
+    border-radius: 8px;
+    padding: 0px 0px;
+}
+
+.artistnamelink:hover {
+    background-color: transparent;
+    color: #f3d9ea ;
+    cursor: pointer;
+}
+
+.artistname {
+    color: white;
+    font-family: 'futura';
+    font-weight: bold;
+    font-size: large;
+    font-style: normal;
+    position: relative;
+    bottom: 512px;
+    display: inline-block;
+
+}
+
 .popularity {
     color: white;
     font-family: futura;
