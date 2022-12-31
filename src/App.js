@@ -123,10 +123,12 @@ function App() {
         }
     }, [idFound, lowID, token]);
 
-    useEffect(() => { //TESTING
+    /*useEffect(() => { //TESTING
         console.log(obscure);
+        //console.log(topTracks.tracks[0]);
+        //console.log(topTracks.tracks[0].preview_url);
 
-    }, [obscureFound, obscure]);
+    }, [obscureFound, obscure, tracksFound, topTracks]);*/
 
     useEffect(() => {
         if (idFound){
@@ -148,15 +150,8 @@ function App() {
         }
     }, [idFound, lowID, token]);
 
-    useEffect(() => { //TESTING
-        console.log(obscure);
-        console.log(topTracks);
-
-    }, [obscureFound, obscure, tracksFound, topTracks]);
-
-
     const renderObscure = () => {
-        if (obscure.length != 0){
+        if (obscure.length != 0){ //need to put this elsewhere
             let imagePath = './bro2.png';
             if (obscure.popularity <= 50){
                 imagePath = './tapped_in_fasho2.png';
@@ -183,14 +178,22 @@ function App() {
                                 {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
                                         
                         </div>
-                        <div>
-                            <h2> listen to "Kamali" by Priya Ragu </h2>
-                            <body>
-                                <audio controls>
-                                    <source src="https://p.scdn.co/mp3-preview/1180dcee1239873534bac48ae178296e92884698?cid=774b29d4f13844c495f206cafdad9c86" type="audio/mpeg"></source>
-                                </audio>
-                            </body>
+                        {topTracks.length != 0 && topTracks.tracks[0].preview_url != null ? 
+                            <div>
+                            <h2> listen to "{topTracks.tracks[0].name}" by {obscure.name} </h2>
+                            <div>
+                                <body>
+                                    <audio controls>
+                                        <source src={topTracks.tracks[0].preview_url} type="audio/mpeg"></source>
+                                    </audio>
+                                </body>
+                            </div>
                         </div>
+                        :
+                        <div>
+                            
+                        </div>     
+                        }
                         <div className = "smalltext">
                             <p>Music data, artist images, and album covers are provided by Spotify.</p><p> monk:underground is not affiliated, associated, authorized, endorsed by,or in any way officially connected with Spotify. Spotify is a trademark of Spotify AB.</p>  
                         </div>
