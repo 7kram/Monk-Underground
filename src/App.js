@@ -23,10 +23,11 @@ function App() {
     const [artists, setArtists] = useState([]);
     const [obscure, setObscure] = useState([]);
     const [lowID, setLowID] = useState("");
+    const [topTracks, setTopTracks] = useState([]); //depends on lowID idFound and token : should be tracks[0].preview_url IF it's not null
     const [artistsFound, setArtistsFound] = useState(false);
     const [idFound, setIDFound] = useState(false);
     const [obscureFound, setObscureFound] = useState(false);
-                                                                                     
+    const [tracksFound, setTracksFound] = useState(false);     //for testing                                                                        
 
     //let lowName = ""; //for debugging
     //let lowID = ""; //for get artist endpoint
@@ -83,6 +84,7 @@ function App() {
 
     useEffect(() => {
         if (artistsFound) {
+            console.log(artists);
             let lowScore = 101;
             const getLowID = () => {
                 //console.log("GET LOW ID called");
@@ -126,6 +128,32 @@ function App() {
 
     }, [obscureFound, obscure]);
 
+    useEffect(() => {
+        if (idFound){
+            const getTopTracks = async () => {
+                const {data} = await axios.get(`https://api.spotify.com/v1/artists/${lowID}/top-tracks`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        },
+                        params: {
+                            market: "US"
+                        }
+                    })
+                    setTopTracks(data);
+                    setTracksFound(true);
+                    //console.log(obscure);
+                };
+            getTopTracks();
+            //ignore = true;
+        }
+    }, [idFound, lowID, token]);
+
+    useEffect(() => { //TESTING
+        console.log(obscure);
+        console.log(topTracks);
+
+    }, [obscureFound, obscure, tracksFound, topTracks]);
+
 
     const renderObscure = () => {
         if (obscure.length != 0){
@@ -144,7 +172,7 @@ function App() {
                         <div ref={exportRef} className='headimage' key={obscure.id}>
                             <img src={require(`${imagePath}`)} alt="My Top Underground Artist" /> <img/>
                                     <div className="artistname">
-                                        {obscure.name}{/* <a className="artistname" href={obscure.external_urls.spotify}> {obscure.name}</a> */}
+                                        <a href={obscure.external_urls.spotify}> {obscure.name}</a>
                                     </div>
                                 <div className = "scorebox">  
                                     <div className='score'>
@@ -154,6 +182,14 @@ function App() {
                                                  
                                 {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
                                         
+                        </div>
+                        <div>
+                            <h2> listen to "Kamali" by Priya Ragu </h2>
+                            <body>
+                                <audio controls>
+                                    <source src="https://p.scdn.co/mp3-preview/1180dcee1239873534bac48ae178296e92884698?cid=774b29d4f13844c495f206cafdad9c86" type="audio/mpeg"></source>
+                                </audio>
+                            </body>
                         </div>
                         <div className = "smalltext">
                             <p>Music data, artist images, and album covers are provided by Spotify.</p><p> monk:underground is not affiliated, associated, authorized, endorsed by,or in any way officially connected with Spotify. Spotify is a trademark of Spotify AB.</p>  
