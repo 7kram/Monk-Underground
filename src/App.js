@@ -188,9 +188,9 @@ function App() {
                             renderObscure()
                             :
                             <div className='homepage'> 
-                                <h3> WANNA KNOW YOUR TOP UNDERGROUND ARTIST?  </h3>
+                            {/* <img className='gradient' src = {gradient}/> */}
+                                <h3> WANNA KNOW YOUR TOP UNDERGROUND ARTIST?</h3>
                               <p className='home-small'> We define "underground" as artists who are up and coming or outside of the mainstream. This is found by taking your top 25 artists in the last 6 months and ranking them based on popularity. The least popular is your top underground artist.</p><p className='home-small'> This website is made possible with the use of the Spotify Web API.</p>
-                              <img className='gradient' src = {gradient}/>
                             </div>
                             }           
             </body>    

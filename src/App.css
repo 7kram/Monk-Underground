@@ -9,6 +9,7 @@ body {
     margin-left:auto;
     margin-right:auto;
     padding: 0;
+    width: 600px;
 }
 
 
@@ -23,9 +24,9 @@ body {
 }
 
 h1 {
-    justify-content: left;
-    text-align: left;
-    padding-left: 30px;
+    justify-content: center;
+    text-align: middle;
+    /* padding-left: 30px; */
     font-family: 'SilversPersonal';
     font-style: normal;
     font-weight: normal;
@@ -50,8 +51,7 @@ h2 {
 
 .homepage {
     background-color: transparent;
-    width: 500px;
-    height: 130px;
+
     margin: 0 auto;
     padding: 0; 
     position: relative;
@@ -60,26 +60,33 @@ h2 {
 
 }
 
-.home-small {
-    font-family: "futura";
-    color: #403233;
-    font-size: small;
-    text-align: center; 
-    vertical-align: middle;
-    white-space: pre-line;
-}
-
 h3 {
     text-align: center;
     font-family: 'futura';
     font-weight: bold;
     color: #403233;
-    margin: 0 ;
+    margin: 0 auto;
     padding: 0;
     font-size: 25px;
     position: relative;
+    display: block;
 
+    width: 500px
     
+}
+
+.home-small {
+    font-family: "futura";
+    color: #403233;
+    font-size: small;
+    text-align: center; 
+    white-space: pre-line;
+    width: 100%;
+    display: block;
+    position: relative;
+
+    width: 500px;
+    left: 50px;
 }
 
 
@@ -93,12 +100,12 @@ h3 {
 }
 
 .gradient {
-    width:1120px;
-    max-height:630px;
-    text-align: center;
-    vertical-align: left;
-    right: 310px;
-    top: 20px
+    top: 10px;
+    width: 100%;
+    height: 281px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
 }
 
 p {
@@ -112,6 +119,7 @@ p {
 
 
 a {
+    text-align: center;
     background-color: transparent; /* Grey */
     border: none;
     color: #403233;
@@ -216,6 +224,7 @@ width: 100%;
     position: relative;
     zoom: 0.8;
     -moz-transform: scale(0.8);
+    
 }
 
 img {
