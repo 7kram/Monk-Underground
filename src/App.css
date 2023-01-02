@@ -9,9 +9,9 @@ body {
     margin-left:auto;
     margin-right:auto;
     padding: 0;
-    width: 600px;
-}
+    width: 100%;
 
+}
 
 .App {
     text-align: center;
@@ -31,7 +31,7 @@ h1 {
     font-style: normal;
     font-weight: normal;
     color: #403233;
-    margin: auto;
+    margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 30px;
     font-size: 40px;
@@ -51,12 +51,11 @@ h2 {
 
 .homepage {
     background-color: transparent;
-
     margin: 0 auto;
     padding: 0; 
     position: relative;
-    top: 30px;
-    
+    top: 30px;  
+    width: 70vw
 
 }
 
@@ -70,23 +69,8 @@ h3 {
     font-size: 25px;
     position: relative;
     display: block;
-
-    width: 500px
+    width: 100%
     
-}
-
-.home-small {
-    font-family: "futura";
-    color: #403233;
-    font-size: small;
-    text-align: center; 
-    white-space: pre-line;
-    width: 100%;
-    display: block;
-    position: relative;
-
-    width: 500px;
-    left: 50px;
 }
 
 
@@ -117,8 +101,19 @@ p {
     white-space: pre-line;
 }
 
+.home-small {
+    font-family: "futura";
+    color: #403233;
+    font-size: small;
+    text-align: center; 
+    white-space: pre-line;
+    display: block;
+    position: relative;
+
+}
 
 a {
+    position: relative;
     text-align: center;
     background-color: transparent; /* Grey */
     border: none;
@@ -131,7 +126,6 @@ a {
     font-family: 'futura';
     font-weight: bold;
     transition-duration: 0.1s;
-    position: relative;
 }
 
 a:hover {
@@ -223,7 +217,7 @@ width: 100%;
 .headtext {
     position: relative;
     zoom: 0.8;
-    -moz-transform: scale(0.8);
+    /* -moz-transform: scale(0.8); */
     
 }
 
