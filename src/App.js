@@ -13,7 +13,7 @@ function App() {
 
     const exportRef = useRef();
     const CLIENT_ID = "d0db6dd1a5ef4b7f8a493a84259ae21c"
-    const REDIRECT_URI = "http://localhost:3000"
+    const REDIRECT_URI = "https://monkunderground.com"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
     const show_dialog = "true"
@@ -176,17 +176,17 @@ function App() {
                                 </div>      
                                                  
                                 {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
-                                        
+                                <div className = "smalltext">
+                            <p>Music data, artist images, and album covers are provided by Spotify.</p><p> monk:underground is not affiliated, associated, authorized, endorsed by,or in any way officially connected with Spotify. Spotify is a trademark of Spotify AB.</p>  
+                        </div>      
                         </div>
                         {topTracks.length != 0 && topTracks.tracks[0].preview_url != null ? 
+                        <div className='audio'>
+                            <p className='home-small'> Listen to "{topTracks.tracks[0].name}" by {obscure.name} </p>
                             <div>
-                            <h2> listen to "{topTracks.tracks[0].name}" by {obscure.name} </h2>
-                            <div>
-                                <body>
                                     <audio controls>
                                         <source src={topTracks.tracks[0].preview_url} type="audio/mpeg"></source>
                                     </audio>
-                                </body>
                             </div>
                         </div>
                         :
@@ -194,9 +194,6 @@ function App() {
                             
                         </div>     
                         }
-                        <div className = "smalltext">
-                            <p>Music data, artist images, and album covers are provided by Spotify.</p><p> monk:underground is not affiliated, associated, authorized, endorsed by,or in any way officially connected with Spotify. Spotify is a trademark of Spotify AB.</p>  
-                        </div>
                     </div>
             )
         }

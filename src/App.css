@@ -94,7 +94,7 @@ h3 {
 
 p {
     font-family: "futura";
-    color: rgb(122, 18, 18);
+    color: grey;
     font-size: small;
     text-align: left; 
     vertical-align: middle;
@@ -110,6 +110,13 @@ p {
     display: block;
     position: relative;
 
+}
+
+.audio {
+    position: relative;
+    margin: 0 auto;
+    bottom: 230px;
+    zoom: 1.2;
 }
 
 a {
