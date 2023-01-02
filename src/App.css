@@ -9,8 +9,9 @@ body {
     margin-left:auto;
     margin-right:auto;
     padding: 0;
-}
+    width: 100%;
 
+}
 
 .App {
     text-align: center;
@@ -23,14 +24,14 @@ body {
 }
 
 h1 {
-    justify-content: left;
-    text-align: left;
-    padding-left: 30px;
+    justify-content: center;
+    text-align: middle;
+    /* padding-left: 30px; */
     font-family: 'SilversPersonal';
     font-style: normal;
     font-weight: normal;
-    color: #000000;
-    margin: auto;
+    color: #403233;
+    margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 30px;
     font-size: 40px;
@@ -50,13 +51,11 @@ h2 {
 
 .homepage {
     background-color: transparent;
-    width: 500px;
-    height: 130px;
     margin: 0 auto;
     padding: 0; 
     position: relative;
-    top: 30px;
-    
+    top: 30px;  
+    width: 70vw
 
 }
 
@@ -64,11 +63,13 @@ h3 {
     text-align: center;
     font-family: 'futura';
     font-weight: bold;
-    color: #000000;
-    margin: 0 ;
+    color: #403233;
+    margin: 0 auto;
     padding: 0;
     font-size: 25px;
     position: relative;
+    display: block;
+    width: 100%
     
 }
 
@@ -83,12 +84,12 @@ h3 {
 }
 
 .gradient {
-    width:1120px;
-    max-height:630px;
-    text-align: center;
-    vertical-align: left;
-    right: 310px;
-    top: 20px
+    top: 10px;
+    width: 100%;
+    height: 281px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
 }
 
 p {
@@ -105,12 +106,15 @@ p {
     color: #000000;
     font-size: small;
     text-align: center; 
-    vertical-align: middle;
     white-space: pre-line;
+    display: block;
+    position: relative;
+
 }
 
-
 a {
+    position: relative;
+    text-align: center;
     background-color: transparent; /* Grey */
     border: none;
     color: #000000;
@@ -122,13 +126,44 @@ a {
     font-family: 'futura';
     font-weight: bold;
     transition-duration: 0.1s;
-    position: relative;
 }
 
 a:hover {
     background-color: #403233; /* Grey */
     color: #ffffff;
     cursor: pointer;
+}
+
+.artistnamelink {
+    border: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    font-size: large;
+    font-family: 'futura';
+    font-weight: bold;
+    transition-duration: 0.1s;
+    position: relative;
+    border-radius: 8px;
+    padding: 0px 0px;
+}
+
+.artistnamelink:hover {
+    background-color: transparent;
+    color: #f3d9ea ;
+    cursor: pointer;
+}
+
+.artistname {
+    color: white;
+    font-family: 'futura';
+    font-weight: bold;
+    font-size: large;
+    font-style: normal;
+    position: relative;
+    bottom: 512px;
+    display: inline-block;
+
 }
 
 .popularity {
@@ -182,7 +217,8 @@ width: 100%;
 .headtext {
     position: relative;
     zoom: 0.8;
-    -moz-transform: scale(0.8);
+    /* -moz-transform: scale(0.8); */
+    
 }
 
 img {
