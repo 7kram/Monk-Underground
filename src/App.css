@@ -10,13 +10,26 @@ body {
     margin-right:auto;
     padding: 0;
     width: 100%;
+    background-image: linear-gradient(
+        0deg,
+        rgb(246, 225, 225) 23.8%,
+        rgb(246, 246, 246) 82%
+        );
+
+        /* display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+        
+        FOR THE FUTURE: THIS CENTERS 
+        EVERYTHING IN A COLUMN!*/ 
 
 }
 
 .App {
     text-align: center;
     justify-content: center;
-    background-color: rgb(255, 255, 255); /* rgb(47, 22, 8) */
+    background-color: rgb(246, 246, 246); /* rgb(47, 22, 8) */
     margin: 0 auto;
     padding: 0;
     width: 100%;
@@ -103,7 +116,7 @@ p {
 
 .home-small {
     font-family: "futura";
-    color: #000000;
+    color: #403233;
     font-size: small;
     text-align: center; 
     white-space: pre-line;
@@ -117,6 +130,26 @@ p {
     margin: 0 auto;
     bottom: 230px;
     zoom: 1.2;
+    background-color: #fff;
+    box-shadow: 0px 20px 20px 0 rgba(252, 169, 169, 0.6);
+    border-radius: 30px;
+    display: flex;
+    padding: 10px 30px;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    
+}
+
+audio {
+    filter: sepia(80%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    bottom: 5px;
 }
 
 a {
@@ -124,7 +157,7 @@ a {
     text-align: center;
     background-color: transparent; /* Grey */
     border: none;
-    color: #000000;
+    color: #403233;
     padding: 8px 12px;
     text-decoration: none;
     display: inline-block;
@@ -175,7 +208,7 @@ a:hover {
 
 .popularity {
     color: white;
-    font-family: futura;
+    font-family: 'futura';
     font-style: italic;
     font-size: 8px;
 }
@@ -183,7 +216,7 @@ a:hover {
 button {
     background-color: transparent; /* Grey */
     border: none;
-    color: #591111;
+    color: #403233;
     padding: 8px 12px;
     text-align: center;
     text-decoration: none;
@@ -199,8 +232,8 @@ button {
 }
 
 button:hover {
-    background-color: #ffffff; /* Grey */
-    color: rgb(95, 38, 38);
+    background-color: #403233; /* Grey */
+    color: white;
     cursor: pointer;
 }
 

@@ -182,12 +182,10 @@ function App() {
                         </div>
                         {topTracks.length != 0 && topTracks.tracks[0].preview_url != null ? 
                         <div className='audio'>
-                            <p className='home-small'> Listen to "{topTracks.tracks[0].name}" by {obscure.name} </p>
-                            <div>
+                                                   <p className='home-small'> Listen to {topTracks.tracks[0].name} by {obscure.name} </p>
                                     <audio controls>
-                                        <source src={topTracks.tracks[0].preview_url} type="audio/mpeg"></source>
+                                        <source src={topTracks.tracks[0].preview_url} ></source>
                                     </audio>
-                            </div>
                         </div>
                         :
                         <div>
