@@ -13,7 +13,7 @@ function App() {
 
     const exportRef = useRef();
     const CLIENT_ID = "d0db6dd1a5ef4b7f8a493a84259ae21c"
-    const REDIRECT_URI = "https://monkunderground.com"
+    const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
     const show_dialog = "true"
@@ -23,10 +23,11 @@ function App() {
     const [artists, setArtists] = useState([]);
     const [obscure, setObscure] = useState([]);
     const [lowID, setLowID] = useState("");
+    const [topTracks, setTopTracks] = useState([]); //depends on lowID idFound and token : should be tracks[0].preview_url IF it's not null
     const [artistsFound, setArtistsFound] = useState(false);
     const [idFound, setIDFound] = useState(false);
     const [obscureFound, setObscureFound] = useState(false);
-                                                                                     
+    const [tracksFound, setTracksFound] = useState(false);     //for testing                                                                        
 
     //let lowName = ""; //for debugging
     //let lowID = ""; //for get artist endpoint
@@ -83,6 +84,7 @@ function App() {
 
     useEffect(() => {
         if (artistsFound) {
+            console.log(artists);
             let lowScore = 101;
             const getLowID = () => {
                 //console.log("GET LOW ID called");
@@ -121,14 +123,35 @@ function App() {
         }
     }, [idFound, lowID, token]);
 
-    useEffect(() => { //TESTING
+    /*useEffect(() => { //TESTING
         console.log(obscure);
+        //console.log(topTracks.tracks[0]);
+        //console.log(topTracks.tracks[0].preview_url);
 
-    }, [obscureFound, obscure]);
+    }, [obscureFound, obscure, tracksFound, topTracks]);*/
 
+    useEffect(() => {
+        if (idFound){
+            const getTopTracks = async () => {
+                const {data} = await axios.get(`https://api.spotify.com/v1/artists/${lowID}/top-tracks`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        },
+                        params: {
+                            market: "US"
+                        }
+                    })
+                    setTopTracks(data);
+                    setTracksFound(true);
+                    //console.log(obscure);
+                };
+            getTopTracks();
+            //ignore = true;
+        }
+    }, [idFound, lowID, token]);
 
     const renderObscure = () => {
-        if (obscure.length != 0){
+        if (obscure.length != 0){ //need to put this elsewhere
             let imagePath = './bro2.png';
             if (obscure.popularity <= 50){
                 imagePath = './tapped_in_fasho2.png';
@@ -155,6 +178,22 @@ function App() {
                                 {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
                                         
                         </div>
+                        {topTracks.length != 0 && topTracks.tracks[0].preview_url != null ? 
+                            <div>
+                            <h2> listen to "{topTracks.tracks[0].name}" by {obscure.name} </h2>
+                            <div>
+                                <body>
+                                    <audio controls>
+                                        <source src={topTracks.tracks[0].preview_url} type="audio/mpeg"></source>
+                                    </audio>
+                                </body>
+                            </div>
+                        </div>
+                        :
+                        <div>
+                            
+                        </div>     
+                        }
                         <div className = "smalltext">
                             <p>Music data, artist images, and album covers are provided by Spotify.</p><p> monk:underground is not affiliated, associated, authorized, endorsed by,or in any way officially connected with Spotify. Spotify is a trademark of Spotify AB.</p>  
                         </div>

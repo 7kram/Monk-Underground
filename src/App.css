@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     min-height: 100vh;
     margin-left:auto;
     margin-right:auto;
@@ -16,7 +16,7 @@ body {
 .App {
     text-align: center;
     justify-content: center;
-    background-color: white;
+    background-color: rgb(255, 255, 255); /* rgb(47, 22, 8) */
     margin: 0 auto;
     padding: 0;
     width: 100%;
@@ -44,7 +44,7 @@ h1 {
 }
 
 h2 {
-    color: #403233;
+    color: #240505;
     font-family: "futura";
     margin: 0 auto;
 }
@@ -94,7 +94,7 @@ h3 {
 
 p {
     font-family: "futura";
-    color: grey;
+    color: rgb(122, 18, 18);
     font-size: small;
     text-align: left; 
     vertical-align: middle;
@@ -103,7 +103,7 @@ p {
 
 .home-small {
     font-family: "futura";
-    color: #403233;
+    color: #000000;
     font-size: small;
     text-align: center; 
     white-space: pre-line;
@@ -117,7 +117,7 @@ a {
     text-align: center;
     background-color: transparent; /* Grey */
     border: none;
-    color: #403233;
+    color: #000000;
     padding: 8px 12px;
     text-decoration: none;
     display: inline-block;
@@ -176,7 +176,7 @@ a:hover {
 button {
     background-color: transparent; /* Grey */
     border: none;
-    color: #403233;
+    color: #591111;
     padding: 8px 12px;
     text-align: center;
     text-decoration: none;
@@ -192,8 +192,8 @@ button {
 }
 
 button:hover {
-    background-color: #403233; /* Grey */
-    color: white;
+    background-color: #ffffff; /* Grey */
+    color: rgb(95, 38, 38);
     cursor: pointer;
 }
 
