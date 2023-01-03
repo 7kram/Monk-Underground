@@ -177,7 +177,6 @@ function App() {
                                                  
                                 {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
                                 <div className = "smalltext">
-                            <p>Music data, artist images, and album covers are provided by Spotify.</p><p> monk:underground is not affiliated, associated, authorized, endorsed by,or in any way officially connected with Spotify. Spotify is a trademark of Spotify AB.</p>  
                         </div>      
                         </div>
                         {topTracks.length != 0 && topTracks.tracks[0].preview_url != null ? 
@@ -190,8 +189,9 @@ function App() {
                         :
                         <div>
                             
-                        </div>     
+                        </div>   
                         }
+                         <p class="spotify-trademark">Music data, artist images, and album covers are provided by Spotify.</p><p class="spotify-trademark"> monk:underground is not affiliated, associated, authorized, endorsed by,or in any way officially connected with Spotify. Spotify is a trademark of Spotify AB.</p>  
                     </div>
             )
         }
