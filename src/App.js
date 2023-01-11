@@ -66,7 +66,7 @@ function App() {
                         },
                         params: {
                             limit: 25, 
-                            time_range: "medium_term"
+                            time_range: "short_term"
                         }
                     })
                     //console.log(data);
@@ -179,6 +179,7 @@ function App() {
                                 <div className = "smalltext">
                         </div>      
                         </div>
+                        
                         {topTracks.length != 0 && topTracks.tracks[0].preview_url != null ? 
                         <div className='audio'>
                                                    <p className='home-small'> Listen to {topTracks.tracks[0].name} by {obscure.name} </p>
