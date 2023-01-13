@@ -310,11 +310,11 @@ img {
     font-style: normal;
     font-size: 20pt;
     position: absolute;
-    font-display: optional;
-    margin: 0 auto;
+    margin:  auto;
     text-align: center;
     vertical-align: middle;
-    line-height: 128px;  
+    line-height: 115px;  
+    /* used to be 128px*/
     left: 10px;
     margin: 0;
     padding: 0;

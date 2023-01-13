@@ -13,7 +13,7 @@ function App() {
 
     const exportRef = useRef();
     const CLIENT_ID = "d0db6dd1a5ef4b7f8a493a84259ae21c"
-    const REDIRECT_URI = "https://monkunderground.com"
+    const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
     const show_dialog = "true"
@@ -212,7 +212,7 @@ function App() {
                         :
                         <div>
                             <button className='logout' onClick={logout}> LOGOUT </button>
-                            {/* <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SAVE</button> */}
+                            <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SAVE</button>
                             <p className='home-small'>T. Monk gave you an underground score of {100 - obscure.popularity + "%"}</p>
                         </div>
                         }
