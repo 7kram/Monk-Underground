@@ -270,6 +270,7 @@ width: 100%;
 .headtext {
     position: relative;
     zoom: 0.8;
+    line-height: 0.5;
     /* -moz-transform: scale(0.8); */
     
 }
@@ -313,13 +314,11 @@ img {
     margin:  auto;
     text-align: center;
     vertical-align: middle;
-    line-height: 115px;  
+    line-height: 128px;  
     /* used to be 128px*/
     left: 10px;
     margin: 0;
     padding: 0;
-
-    
 }
 
 img.artistcover {
@@ -373,4 +372,20 @@ img.artistcover {
     margin: 0;
     padding: 0;
 
+}
+
+.underground {
+    color: black;
+    font-family: "futura";
+    font-weight: bolder;
+    font-style: normal;
+    font-size: 7.3pt;
+    position: absolute;
+    margin:  auto;
+    line-height: 115px;  
+    /* used to be 128px*/
+    left: 9px;
+    top: 24px;
+    margin: 0;
+    padding: 0;
 }
