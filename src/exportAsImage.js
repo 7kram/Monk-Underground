@@ -12,6 +12,7 @@ const exportAsImage = async (element, imageFileName) => {
     bodyWidth += newWidth;
   }
 
+
   html.style.width = htmlWidth + "px";
   body.style.width = bodyWidth + "px";
 
@@ -20,15 +21,17 @@ const exportAsImage = async (element, imageFileName) => {
     allowTaint: false,
      useCORS: true,
      backgroundColor: null,
-     scale: 3,
+     scale: 5,
      letterRendering: true,
      
 
+
 });
-  const image = canvas.toDataURL("image/jpeg", 1.0);
+  const image = canvas.toDataURL("image/png", 3.0);
   downloadImage(image, imageFileName);
   html.style.width = null;
   body.style.width = null;
+  document.body.style.lineHeight = '0.5';
 };
 
 const downloadImage = (blob, fileName) => {

@@ -22,12 +22,3 @@ code {
     url("./fonts/SilversPersonalUseRegular-ZV22x.ttf") format("truetype");
   font-weight: normal;
 }
-
-@tailwind base;
-@layer base {
-
-    @apply inline-block;
-
-}
-@tailwind components;
-@tailwind utilities;

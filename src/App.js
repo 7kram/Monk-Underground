@@ -193,7 +193,7 @@ function App() {
                             
                         </div>   
                         }
-                         <p class="spotify-trademark">Music data, artist images, and album covers are provided by Spotify.</p><p class="spotify-trademark"> monk:underground is not affiliated, associated, authorized, endorsed by,or in any way officially connected with Spotify. Spotify is a trademark of Spotify AB.</p>  
+                         <p class="spotify-trademark">Music data, artist images, and album covers are provided by Spotify.</p> <p class="spotify-trademark"> monk:underground is not affiliated, associated, authorized, endorsed by,or in any way officially connected with Spotify. Spotify is a trademark of Spotify AB.</p>  
                     </div>
             )
         }
@@ -213,7 +213,7 @@ function App() {
                         :
                         <div>
                             <button className='logout' onClick={logout}> LOGOUT </button>
-                            {/* <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SAVE</button> */}
+                            <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SAVE</button>
                             <p className='home-small'>T. Monk gave you an underground score of {100 - obscure.popularity + "%"}</p>
                         </div>
                         }
