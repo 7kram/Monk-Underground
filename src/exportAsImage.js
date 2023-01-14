@@ -21,13 +21,13 @@ const exportAsImage = async (element, imageFileName) => {
     allowTaint: false,
      useCORS: true,
      backgroundColor: null,
-     scale: 5,
+     scale: 3,
      letterRendering: true,
      
 
 
 });
-  const image = canvas.toDataURL("image/png", 3.0);
+  const image = canvas.toDataURL("image/png", 1.0);
   downloadImage(image, imageFileName);
   html.style.width = null;
   body.style.width = null;

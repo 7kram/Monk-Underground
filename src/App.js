@@ -173,7 +173,7 @@ function App() {
                                     <div className='score'>
                                      {100 - obscure.popularity + "%"}
                                     </div>  
-                                    <span className='underground'>UNDERGROUND</span>
+                                    {/* <span className='underground'>UNDERGROUND</span> */}
                                 </div>      
                                                  
                                 {obscure.images.length ? <img className='artistcover' width={"30%"} src={obscure.images[0].url} alt=""/> : <div>No Image</div>}
