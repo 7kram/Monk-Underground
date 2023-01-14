@@ -27,11 +27,12 @@ const exportAsImage = async (element, imageFileName) => {
 
 
 });
+
   const image = canvas.toDataURL("image/png", 1.0);
   downloadImage(image, imageFileName);
   html.style.width = null;
   body.style.width = null;
-  document.body.style.lineHeight = '0.5';
+
 };
 
 const downloadImage = (blob, fileName) => {
