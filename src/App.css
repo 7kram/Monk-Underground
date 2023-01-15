@@ -143,6 +143,20 @@ p {
 
 }
 
+.home-small_2 {
+    font-family: "futura";
+    color: #403233;
+    font-size: 11px;
+    text-align: center; 
+    white-space: pre-line;
+    display: block;
+    position: relative;
+    bottom: 10px;
+    font-style: italic;
+    line-height: 0.5;
+
+}
+
 .audio {
     position: relative;
     margin: 0 auto;

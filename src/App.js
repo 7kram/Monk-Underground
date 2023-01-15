@@ -65,7 +65,7 @@ function App() {
                             Authorization: `Bearer ${token}`
                         },
                         params: {
-                            limit: 25, 
+                            limit: 30, 
                             time_range: "medium_term"
                         }
                     })
@@ -183,7 +183,7 @@ function App() {
                         
                         {topTracks.length != 0 && topTracks.tracks[0].preview_url != null ? 
                         <div className='audio'>
-                                                   <p className='home-small'> Listen to {topTracks.tracks[0].name} by {obscure.name} </p>
+                                                   <p className='home-small'> Listen to "{topTracks.tracks[0].name}" by {obscure.name} </p>
                                     <audio controls>
                                         <source src={topTracks.tracks[0].preview_url} ></source>
                                     </audio>
@@ -214,7 +214,8 @@ function App() {
                         <div>
                             <button className='logout' onClick={logout}> LOGOUT </button>
                             <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SAVE</button>
-                            <p className='home-small'>T. Monk gave you an underground score of {100 - obscure.popularity + "%"}</p>
+                            <p className='home-small'>T. Monk gave you an underground score of {100 - obscure.popularity + "%"}</p> 
+                            <p className='home-small_2'>Share your top artist with the world (and tag them)</p>
                         </div>
                         }
             </header>  
@@ -226,7 +227,7 @@ function App() {
                             <div className='homepage'> 
                             {/* <img className='gradient' src = {gradient}/> */}
                                 <h3> WANNA KNOW YOUR TOP UNDERGROUND ARTIST?</h3>
-                              <p className='home-small'> We define "underground" as artists who are up and coming or outside of the mainstream. This is found by taking your top 25 artists in the last 6 months and ranking them based on popularity. The least popular is your top underground artist.</p><p className='home-small'> This website is made possible with the use of the Spotify Web API.</p>
+                              <p className='home-small'> We define "underground" as artists who are up and coming or outside of the mainstream. Your top underground artist is found by taking your top 30 artists in the last 6 months and ranking them based on popularity.</p><p className='home-small'> This website is made possible with the use of the Spotify Web API.</p>
                             </div>
                             }           
             </body>    
