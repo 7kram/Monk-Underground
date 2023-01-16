@@ -215,7 +215,7 @@ function App() {
                             <button className='logout' onClick={logout}> LOGOUT </button>
                             <button className='save' onClick={() => exportAsImage(exportRef.current, "My Top Underground Artist")}>SAVE</button>
                             <p className='home-small'>T. Monk gave you an underground score of {120 - obscure.popularity + "%"}</p> 
-                            <p className='home-small_2'>Share your top artist with the world (and tag them)</p>
+                            <p className='home-small_2'>Click save and share your top artist with the world (and tag them)</p>
                         </div>
                         }
             </header>  
