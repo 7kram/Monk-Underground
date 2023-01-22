@@ -21,7 +21,7 @@ const exportAsImage = async (element, imageFileName) => {
     allowTaint: false,
      useCORS: true,
      backgroundColor: null,
-     scale: 3,
+     scale: 5,
      letterRendering: true,
      
 
