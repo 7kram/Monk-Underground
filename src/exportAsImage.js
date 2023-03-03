@@ -28,7 +28,7 @@ const exportAsImage = async (element, imageFileName) => {
 
 });
 
-  const image = canvas.toDataURL("image/jpeg", 3.0);
+  const image = canvas.toDataURL("image/png", 3.0);
   downloadImage(image, imageFileName);
   html.style.width = null;
   body.style.width = null;

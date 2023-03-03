@@ -13,7 +13,7 @@ function App() {
 
     const exportRef = useRef();
     const CLIENT_ID = "d0db6dd1a5ef4b7f8a493a84259ae21c"
-    const REDIRECT_URI = "https://monkunderground.com"
+    const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
     const show_dialog = "true"
@@ -66,7 +66,7 @@ function App() {
                         },
                         params: {
                             limit: 30, 
-                            time_range: "medium_term"
+                            time_range: "short_term"
                         }
                     })
                     //console.log(data);
