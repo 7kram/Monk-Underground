@@ -1,5 +1,5 @@
 # Monk Underground
 
-Find your top underground artist using React.js and the Spotify Web API
+Find your top underground artist with Spotify
 
 Visit monkunderground.com
